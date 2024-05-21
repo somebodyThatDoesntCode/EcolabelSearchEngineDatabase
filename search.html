@@ -15,21 +15,22 @@
   }
 </style>
 <form id="form" style="text-align:center;" autocomplete="off" onsubmit="(e) => { e.preventDefault(); }">
-  <input id="input" type="text" placeholder="Search"
-    style="padding:5px;margin:5px;border: 1px solid gray;border-radius:5px;" />
+  <input id="input" type="text" placeholder="Search" style="padding:5px;margin:5px;border: 1px solid gray;border-radius:5px;" onkeyup="update()"/ >
   <br />
   <div style="display:none;" id="suggestions"></div>
 </form>
 <script>
-  var input = document.getElementById("input");
-  var suggestions = document.getElementById("suggestions");
   document.getElementById("form").addEventListener("keyup", update);
   
-  var idxs = [];
-  async function update(e) {
+  async function update() {
+    var input = document.getElementById("input");
+    var suggestions = document.getElementById("suggestions");
+    var idxs = [];
+
     var response = await fetch("https://raw.githubusercontent.com/somebodyThatDoesntCode/EcolabelSearchEngineDatabase/main/search.txt");
     var txt = await response.text();
     var directory = txt.split(" ");
+
     let found = input.value;
     idxs = [];
     suggestions.style.display = "none"
