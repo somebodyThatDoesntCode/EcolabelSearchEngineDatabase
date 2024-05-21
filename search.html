@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <style>
+    button {
+      margin-top: 2px;
+      border: 1px solid gray;
+      border-radius: 2px;
+      background-color: #aaa;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    button:active {
+      background-color: #555;
+    }
+  </style>
+  <form id="form" style="text-align:center;" autocomplete="off" onsubmit="(e) => { e.preventDefault(); }">
+    <input id="input" type="text" placeholder="Search"
+      style="padding:5px;margin:5px;border: 1px solid gray;border-radius:5px;" />
+    <br />
+    <div style="display:none;" id="suggestions"></div>
+  </form>
+  <script>
+    var input = document.getElementById("input");
+    var suggestions = document.getElementById("suggestions");
+    document.getElementById("form").addEventListener("keyup", update);
+    
+    var idxs = [];
+    async function update(e) {
+      var response = await fetch("https://raw.githubusercontent.com/somebodyThatDoesntCode/EcolabelSearchEngineDatabase/main/search.txt");
+      var txt = await response.text();
+      var directory = txt.split(" ");
+      let found = input.value;
+      idxs = [];
+      suggestions.style.display = "none"
+      suggestions.innerHTML = "";
+      for (i = 0; i < directory.length; i++) {
+        if (found.trim() == "") {
+          continue;
+        }
+        if (directory[i].includes(found.toLowerCase())) {
+          idxs.push(i);
+          let el = document.createElement("button");
+          el.secretValue = directory[i];
+          el.style.border = "none";
+          el.style.backgroundColor = "none";
+          el.onclick = (E) => {
+            E.preventDefault();
+            let found = input.value;
+            input.value = "";
+            if (idxs.length < 1) return;
+            let a = document.createElement("a");
+            a.href = "https://sites.google.com/pausd.us/ecolabel-search-engine/" + E.target.secretValue;
+            a.click();
+          };
+          el.innerHTML = directory[i];
+          suggestions.appendChild(el);
+          suggestions.style.display = "initial";
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
