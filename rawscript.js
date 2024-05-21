@@ -27,7 +27,6 @@ async function update(e) {
         input.value = "";
         if (idxs.length < 1) return;
         let a = document.createElement("a");
-        a.setAttribute("target", "_self");
         a.href = "https://sites.google.com/pausd.us/ecolabel-search-engine/" + E.target.secretValue;
         a.click();
       };
