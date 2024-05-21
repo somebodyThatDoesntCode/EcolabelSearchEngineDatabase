@@ -1,5 +1,3 @@
-document.getElementById("form").addEventListener("keyup", update);
-
 async function update(e) {
   var input = document.getElementById("input");
   var suggestions = document.getElementById("suggestions");
