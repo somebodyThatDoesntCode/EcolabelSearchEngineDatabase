@@ -33,12 +33,12 @@ async function update(e) {
       origFound = found;
       el.innerHTML = "";
       for (const char of directory[i]) {
-        if (found.includes(char)) {
+        if (found.toLowerCase().includes(char)) {
           el.innerHTML += "<b>" + char + "</b>";
+          found = found.replace(char, "");
         } else {
           el.innerHTML += char;
         }
-        found = found.replace(char, "");
       }
       found = origFound;
       el.innerHTML = directory[i];
