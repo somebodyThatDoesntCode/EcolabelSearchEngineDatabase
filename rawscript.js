@@ -30,6 +30,7 @@ async function update(e) {
         a.href = "https://sites.google.com/pausd.us/ecolabel-search-engine/" + E.target.secretValue;
         a.click();
       };
+      origFound = found;
       el.innerHTML = "";
       for (const char of directory[i]) {
         if (found.includes(char)) {
@@ -39,6 +40,7 @@ async function update(e) {
         }
         found = found.replace(char, "");
       }
+      found = origFound;
       el.innerHTML = directory[i];
       suggestions.appendChild(el);
       suggestions.style.display = "initial";
