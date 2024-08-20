@@ -41,7 +41,6 @@ async function update(e) {
         }
       }
       found = origFound;
-      el.innerHTML = directory[i];
       suggestions.appendChild(el);
       suggestions.style.display = "initial";
     }
