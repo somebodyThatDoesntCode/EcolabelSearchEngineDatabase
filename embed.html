@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <!-- Embed only -->
+  <div id="frame"></div>
+  <script>
+    async function run() {
+      let response = await fetch("https://raw.githubusercontent.com/somebodyThatDoesntCode/EcolabelSearchEngineDatabase/main/search.html");
+      let txt = await response.text();
+      console.log(txt);
+      document.getElementById("frame").innerHTML = txt;
+
+      response = await fetch("https://raw.githubusercontent.com/somebodyThatDoesntCode/EcolabelSearchEngineDatabase/main/rawscript.js");
+      txt = await response.text();
+      console.log(txt)
+
+      document.getElementById("form").addEventListener("keyup", new Function(txt + "update(null);"));
+    }
+
+    run();
+  </script>
+</body>
+
+</html>
