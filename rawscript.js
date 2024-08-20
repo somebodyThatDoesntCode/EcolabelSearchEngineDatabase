@@ -1,5 +1,6 @@
 function prevent(e) {
     e.preventDefault();
+    return false;
 }
 
 async function update(e) {
