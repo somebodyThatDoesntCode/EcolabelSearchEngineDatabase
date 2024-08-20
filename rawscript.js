@@ -1,3 +1,7 @@
+function prevent(e) {
+    e.preventDefault();
+}
+
 async function update(e) {
   var input = document.getElementById("input");
   var suggestions = document.getElementById("suggestions");
